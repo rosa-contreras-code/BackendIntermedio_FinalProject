@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Libros CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container py-4">
+  <h1 class="mb-4">Venta de Libros — Administración</h1>
+
+  <!-- Nav Tabs -->
+  <ul class="nav nav-tabs mb-3" id="mainTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="autores-tab" data-bs-toggle="tab" data-bs-target="#autores" type="button">Autores</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="libros-tab" data-bs-toggle="tab" data-bs-target="#libros" type="button">Libros</button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <!-- Autores -->
+    <div class="tab-pane fade show active" id="autores" role="tabpanel">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h4>Autores</h4>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#autorModal" onclick="openAutorModal()">
+            <i class="fa-solid fa-plus"></i>
+            Agregar autor
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="autoresTable">
+          <thead class="table-dark">
+            <tr><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Acciones</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Libros -->
+    <div class="tab-pane fade" id="libros" role="tabpanel">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h4>Libros</h4>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#libroModal" onclick="openLibroModal()">
+            <i class="fa-solid fa-plus"></i>
+            Agregar libro
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="librosTable">
+          <thead class="table-dark">
+            <tr><th>ID</th><th>Título</th><th>Páginas</th><th>Fecha de Publicación</th><th>Autor</th><th>Acciones</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal autor -->
+<div class="modal fade" id="autorModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" id="autorForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="autorModalTitle">Agregar autor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="autorId">
+        <div class="mb-3">
+          <label for="autorNombre" class="form-label">Nombre</label>
+          <input id="autorNombre" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="autorApellidos" class="form-label">Apellidos</label>
+          <input id="autorApellidos" class="form-control" required>
+        </div>
+        <div id="autorError" class="text-danger small"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal libro -->
+<div class="modal fade" id="libroModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" id="libroForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="libroModalTitle">Agregar libro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="libroId">
+        <div class="mb-3">
+          <label for="libroTitulo" class="form-label">Título</label>
+          <input id="libroTitulo" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="libroPaginas" class="form-label">Páginas</label>
+          <input id="libroPaginas" type="number" min="0" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="libroFecha" class="form-label">Fecha publicación</label>
+          <input id="libroFecha" type="date" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="libroAutor" class="form-label">Autor</label>
+          <select id="libroAutor" class="form-select">
+            <option value="">-- Selecciona autor --</option>
+          </select>
+        </div>
+        <div id="libroError" class="text-danger small"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar libro</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    <!-- <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        Navbar content
+    </nav>
+    <button id="btnTodos">Ver todos los libros</button>
+    <button id="btntBuscar">Buscar libro por Id</button>
+
+    <input id="idLibro" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+
+    <pre id="resultado"></pre> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="scripts/autores.js"></script>
+<script src="scripts/libros.js"></script>
+<script src="scripts/datetime.js"></script>
+<script>
+        const API = "http://localhost:3000/api";
+
+        //Inicializar tablas
+        async function init(){
+            await loadAutores();
+            await loadLibros();
+        }
+        init();
+    </script>
+</body>
+</html>

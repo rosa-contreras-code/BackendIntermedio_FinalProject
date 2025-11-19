@@ -69,7 +69,7 @@ document.getElementById("libroForm").addEventListener("submit", async (e) => {
   const fechaPublicacion = document.getElementById('libroFecha').value;
   const autorId = document.getElementById('libroAutor').value;
 
-  if (!titulo || !paginas || !paginas > 0 || !fecha || !autorId) {
+  if (!titulo || !paginas || !paginas > 0 || !fechaPublicacion || !autorId) {
     document.getElementById('libroError').textContent = 'Completa todos los campos';
     return;
   }

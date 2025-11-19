@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de ubicación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <nav class="navbar bg-dark navbar-expand-md bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Backend Intermedio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link"  href="../../frontend/index.html">Venta de libros</a>
+          <a class="nav-link active" aria-current="page" href="../frontend/index.html">
+            Registro de ubicación
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <h1 class="mb-4">Registro de ubicación</h1>
+
+    <div class="tab-content">
+
+      
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          
+          <input type="hidden" id="autorId">
+          <div class="mb-3">
+            <label for="latitud" class="form-label">Latitud</label>
+            <input id="latitud" class="form-control" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="longitud" class="form-label">Longitd</label>
+            <input id="longitud" class="form-control" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="fechaHora" class="form-label">Hora exacta</label>
+            <input id="fechaHora" class="form-control" disabled>
+            <input id ="fecha" type="hidden">
+            <input id ="hora" type="hidden">
+          </div>
+          <button type="fechaHora" class="btn btn-primary" id="btnSaveNew">
+            Guardar ubicación actual
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered" id="ubicacionTable">
+            <thead class="table-dark">
+              <tr><th>Latitud</th><th>Longitud</th><th>Fecha</th><th>Hora</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+          crossorigin="anonymous"></script>
+  <script src="scripts/ipapi.js"></script>
+  <script src="scripts/ubicacion.js"></script>
+  <script>
+    obtenerUbicacion();
+     const API = "http://localhost:3001/api";
+    //Inicializar tablas
+          async function init(){
+              await loadRegisters();
+          }
+          init();
+  </script>
+</body>
+</html>

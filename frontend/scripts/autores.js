@@ -83,7 +83,7 @@ document.getElementById("autorForm").addEventListener("submit", async (e) => {
     modal.hide();
     loadAutores();
   } catch (error) {
-    console.error("Ocuarrió un error al intentar guardar el autor", error)
+    console.error("Ocurrió un error al intentar guardar el autor", error)
      alert("Ocurrió un error al intentar guardar");
   }
 });

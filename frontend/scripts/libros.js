@@ -15,11 +15,13 @@ async function loadLibros() {
           <td>${libro.fechaPublicacion ? libro.fechaPublicacion.split('T')[0] : ''}</td>
           <td>${libro.autor}</td>
           <td class='text-center'>
-            <button class='btn btn-sm btn-warning me-1' onclick= 'editLibro(${libro.id})' data-toogle="tooltip" data-placement="top" title="Editar">
+            <button class='btn btn-sm btn-warning me-1' onclick= 'editLibro(${libro.id})' 
+                    data-toogle="tooltip" data-placement="top" title="Editar">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
 
-            <button class='btn btn-sm btn-danger me-1' onclick= 'deleteLibro(${libro.id})' data-toogle="tooltip" data-placement="top" title="Eliminar">
+            <button class='btn btn-sm btn-danger me-1' onclick= 'deleteLibro(${libro.id})' 
+                    data-toogle="tooltip" data-placement="top" title="Eliminar">
               <i class="fa-solid fa-trash-can"></i>
             </button>
           </td>
